@@ -1,0 +1,121 @@
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>桃聯區會考落點分析邀請碼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+    :root {
+      --primary-color: #4a90e2;
+      --secondary-color: #3498db;
+      --background-color: #f0f4f8;
+      --text-color: #333333;
+      --card-background: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --accent-color: #e74c3c;
+      --success-color: #2ecc71;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+    
+    /* ... existing code ... */
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="marquee">
+    <div class="marquee-content">
+      歡迎使用桃聯區會考落點分析系統！如系統有任何問題請使用異常回報系統回報給我們
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>
+      桃聯區會考落點分析邀請碼
+    </h1>
+    <div class="invitation-code-container">
+      <div class="invitation-code" id="invitationCode"></div>
+      <button class="copy-button" onclick="copyInvitationCode()">
+        <i class="fas fa-copy"></i> 複製
+      </button>
+    </div>
+    <div id="lastUpdate" class="last-update"></div>
+    <div class="timer" id="timer"></div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div>
+      <button class="button" onclick="showQRCode()"><i class="fas fa-qrcode"></i> 顯示QR碼</button>
+      <button class="button" onclick="shareInvitationCode()"><i class="fas fa-share-alt"></i> 分享邀請碼</button>
+      <button class="button" onclick="manualRefresh()"><i class="fas fa-sync-alt"></i> 手動更新</button>
+    </div>
+    <div class="info">
+      <p><i class="fas fa-sync-alt icon"></i>此邀請碼每小時自動更新一次。</p>
+      <p><i class="fas fa-clock icon"></i>請在邀請碼有效期內使用落點分析系統。</p>
+      <p><i class="fas fa-chart-line icon"></i> <a href="https://tyctw.github.io/">返回分析平台</a> 。</p>
+      <p><i class="fas fa-chart-bar icon"></i>查看 <a href="https://tyctw.github.io/analysis/">全國會考統計資料</a> 。</p>
+    </div>
+  </div>
+  <button id="darkModeToggle" class="dark-mode-toggle">
+    <i class="fas fa-moon"></i>
+  </button>
+  <button id="helpButton" class="help-button">
+    <i class="fas fa-question"></i>
+  </button>
+  <div class="copyright">
+    2025 TYCTW會考落點分析邀請碼. All rights reserved.
+  </div>
+
+  <div class="toast" id="toast">已成功複製邀請碼！</div>
+
+  <div id="qrModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>邀請碼 QR 碼</h2>
+      <div id="qrCode"></div>
+    </div>
+  </div>
+
+  <div id="helpModal" class="modal help-modal">
+    <div class="modal-content">
+      <span class="close help-close">&times;</span>
+      <h2><i class="fas fa-book"></i> 使用說明</h2>
+      <ul class="help-steps">
+        <li class="help-step">
+          <i class="fas fa-sync-alt help-icon"></i>
+          此頁面顯示桃聯區會考落點分析邀請碼，每小時自動更新。
+        </li>
+        <li class="help-step">
+          <i class="fas fa-copy help-icon"></i>
+          點擊「複製」按鈕將邀請碼複製到剪貼簿。
+        </li>
+        <li class="help-step">
+          <i class="fas fa-qrcode help-icon"></i>
+          點擊「顯示QR碼」生成邀請碼的QR碼。
+        </li>
+        <li class="help-step">
+          <i class="fas fa-share-alt help-icon"></i>
+          點擊「分享邀請碼」啟動原生分享功能（若瀏覽器支援）。
+        </li>
+        <li class="help-step">
+          <i class="fas fa-sync help-icon"></i>
+          點擊「手動更新」可立即從後端獲取最新邀請碼。
+        </li>
+        <li class="help-step">
+          <i class="fas fa-hourglass-half help-icon"></i>
+          進度條顯示距離邀請碼更新的倒數進度。
+        </li>
+        <li class="help-step">
+          <i class="fas fa-moon help-icon"></i>
+          使用深色模式切換按鈕切換頁面主題。
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script type="module" src="scripts.js"></script>
+</body>
+</html>
