@@ -400,14 +400,32 @@ a:hover::after {
   cursor: pointer;
 }
 
-#qrCode {
-  background-color: white;
-  padding: 10px;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
+.qr-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
-#qrCode:hover { transform: scale(1.05); }
-.dark-mode #qrCode { box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+
+#qrCode {
+  background: white;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1.5rem auto;
+  max-width: 256px;
+  transition: var(--transition);
+  box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+#qrCode img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dark-mode #qrCode {
+  background: #ffffff;
+}
 
 .dark-mode-toggle, .help-button {
   position: fixed;
@@ -587,6 +605,15 @@ body.dark-mode {
   .icon { font-size: 1em; }
   .copyright { font-size: 0.7rem; }
   .button { padding: 0.6rem 1rem; font-size: 0.8rem; }
+  .qr-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  #qrCode {
+    max-width: 200px;
+    padding: 0.8rem;
+  }
 }
 
 .spinner {

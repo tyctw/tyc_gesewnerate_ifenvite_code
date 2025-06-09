@@ -106,10 +106,11 @@ function showQRCode() {
   qrCodeDiv.innerHTML = '';
   new QRCode(qrCodeDiv, {
     text: invitationCode,
-    width: 128,
-    height: 128,
+    width: 256,
+    height: 256,
     colorDark : "#000000",
-    colorLight : document.body.classList.contains('dark-mode') ? "#ffffff" : "#ffffff"
+    colorLight : "#FFFFFF",
+    correctLevel : QRCode.CorrectLevel.H
   });
   
   modal.style.display = "block";
@@ -240,6 +241,44 @@ function setupSecurity() {
   }
 }
 
+// 下載 QR 碼
+function downloadQRCode() {
+  const qrCodeDiv = document.getElementById('qrCode');
+  const qrCodeImg = qrCodeDiv.querySelector('img');
+  
+  if (!qrCodeImg) {
+    showToast('QR碼尚未生成，請稍後再試');
+    return;
+  }
+
+  // 創建一個臨時的canvas
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // 設置canvas大小
+  canvas.width = qrCodeImg.width;
+  canvas.height = qrCodeImg.height;
+  
+  // 繪製白色背景
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // 繪製QR碼
+  ctx.drawImage(qrCodeImg, 0, 0, canvas.width, canvas.height);
+  
+  // 創建下載連結
+  const link = document.createElement('a');
+  link.download = '邀請碼QR碼.png';
+  link.href = canvas.toDataURL('image/png');
+  
+  // 觸發下載
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  showToast('QR碼下載中...');
+}
+
 // 初始化
 function init() {
   updateInvitationCode();
@@ -253,6 +292,7 @@ function init() {
   window.shareInvitationCode = shareInvitationCode;
   window.manualRefresh = manualRefresh;
   window.showToast = showToast;
+  window.downloadQRCode = downloadQRCode;
 }
 
 init();
